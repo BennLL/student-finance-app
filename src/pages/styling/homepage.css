@@ -1,32 +1,112 @@
-.home-container {
-  padding: 2rem;
-  max-width: 800px;
-  margin: auto;
-  font-family: sans-serif;
+.homeContainer {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  color: white;
+  background-color: black;
+  /* padding-left: 10%;
+  padding-right: 10%; */
+
 }
 
-h2, h3 {
-  color: #1a202c;
+/* home page intro */
+.homePageIntro {
+  /* background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExemxyM2tvbW94YzUwZjc1ZTZoMWFoNmV3a25qbmxrNm51d3AyaXM0bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/78nXADhnE4BQfG4gup/giphy.gif"); */
+  background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXlydDMwb2FzNXBwajlvNGFqc2Rnb2lmNHBkb290a3phbmJtejFnaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T56ypZF2ggnYZIwoS5/giphy.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
 }
 
-.intro p,
-.tools p,
-.premium p {
-  font-size: 1.1rem;
-  color: #4a5568;
+.homePageIntro>div>h2 {
+  font-size: 80px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px black;
+}
+
+.homePageIntro>div>p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #f1f1f1;
+  text-shadow: 2px 2px 4px black;
+  font-weight: bold;
+}
+
+.homePageIntro>div {
+  max-width: 50%;
+}
+
+.homePageIntro>div>button {
+  background-color: Orange;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+/* home page features */
+
+.homePageFeatures {
+  background-image: url("https://c1.wallpaperflare.com/preview/898/284/844/stock-trading-monitor-desk.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.homePageFeaturesText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  left: 20%;
+}
+
+.homePageFeaturesText h3 {
+  color: orange;
+  font-size: 50px;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px black;
+  text-align: start;
 }
 
 .feature-list {
   list-style: none;
-  padding-left: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
 .feature-list li {
-  background-color: #edf2f7;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
+  font-size: 25px;
+  color: #f5f5f5;
+  margin-bottom: 0.75rem;
+  padding-right: 0.5rem;
+  text-shadow: 1px 1px 2px black;
+  transition: transform 0.2s ease;
+  gap: 0.5rem;
+  font-weight: heavy;
+}
+
+.feature-list li:hover {
+  transform: translateX(-5px);
+  color: orange;
 }
