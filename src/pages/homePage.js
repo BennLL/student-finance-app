@@ -26,18 +26,22 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className="tools">
-                <h3>Interactive Tools</h3>
-                <p>
-                    Take a short questionnaire to personalize your budgeting tool and explore financial scenarios through classroom-style simulations and exercises.
-                </p>
+            <div className="homePageTools">
+                <div>
+                    <h3>Interactive Tools</h3>
+                    <p>
+                        Take a short questionnaire to personalize your budgeting tool and explore financial scenarios through classroom-style simulations and exercises.
+                    </p>
+                </div>
             </div>
 
-            <div className="premium">
-                <h3>Premium Features</h3>
-                <p>
-                    Upgrade for access to our advanced budgeting system — built for long-term planning and progress tracking.
-                </p>
+            <div className="homePagePremium">
+                <div>
+                    <h3>Premium Features</h3>
+                    <p>
+                        Upgrade for access to our advanced budgeting system — built for long-term planning and progress tracking.
+                    </p>
+                </div>
             </div>
         </div>
     );
