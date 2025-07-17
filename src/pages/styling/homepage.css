@@ -189,3 +189,37 @@
   text-shadow: 2px 2px 4px black;
   font-weight: bold;
 }
+
+.profileIcon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: black;
+  border: 1px solid white;
+  padding: 0.5rem;
+  list-style: none;
+  margin: 0;
+  min-width: 120px;
+  z-index: 10;
+}
+
+
+.profileDropdown li {
+  margin: 0.5rem 0;
+}
+
+.profileDropdown li a {
+  color: white;
+  text-decoration: none;
+}
+
+.profileDropdown li a:hover {
+  text-decoration: underline;
+}
