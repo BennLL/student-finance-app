@@ -1,6 +1,8 @@
 import './navBar.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -38,10 +40,10 @@ function NavBar() {
                     <li><Link to="/budgeting-tool">Budgeting Tool</Link></li>
                     <li><Link to="/other">Other</Link></li>
                     <li style={{ position: 'relative' }} ref ={dropdownRef}>
-                        <button className="profileIcon" onClick={toggleDropdown}>👤</button>
+                        <button className="profileIcon" onClick={toggleDropdown}><FontAwesomeIcon icon={faUser} /></button>
                         {showDropdown && (
                             <ul className="profileDropdown">
-                                <li><Link to="/login">Login</Link></li>
+                                <li><Link to="/login" onClick={() => setShowDropdown(false)}>Login</Link></li>
                             </ul>
                         )}
                     </li>
