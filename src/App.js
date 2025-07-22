@@ -5,7 +5,6 @@ import BudgetingTool from "./pages/budgetingTool";
 import OtherPage from "./pages/otherPage";
 import TaxHelp from "./pages/taxHelpPage";
 import LoginPage from "./pages/loginPage";
-import SingUpPage from "./pages/signUpPage";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from 'firebase/auth';
@@ -32,7 +31,6 @@ function App() {
                 <Route path="/budgeting-tool" element={<BudgetingTool />} />
                 <Route path="/other" element={<OtherPage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SingUpPage />} />
             </Routes>
         </Router>
     );

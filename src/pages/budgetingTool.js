@@ -3,170 +3,114 @@ import React, { useState } from 'react';
 
 
 function BudgetingTool() {
-    //income
-    const [income, setIncome] = useState({
-        salary: 0,
-        sideIncome: 0,
-        benefits: 0,
-        scholarshipsGrants: 0,
-        other: 0
+    const [answers, setAnswers] = useState({
+        income: '',
+        spending: '',
+        goal: '',
+        flexibility: '',
+        motivation: '',
     });
 
-    const handleChangeIncome = (e) => {
-        const { name, value } = e.target;
-        setIncome(prev => ({
-            ...prev,
-            [name]: parseFloat(value) || 0
-        }));
+    const [result, setResult] = useState(null);
+
+    const handleChange = (e) => {
+        setAnswers({ ...answers, [e.target.name]: e.target.value });
     };
 
-    const totalIncome = Object.values(income).reduce((sum, val) => sum + val, 0);
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    //fixed expenses
-    const [fixedExpenses, setFixedExpenses] = useState({
-        rentMortage: 0,
-        utilities: 0,
-        internetPhone: 0,
-        insurance: 0,
-        loanPayments: 0,
-        subscriptions: 0
-    });
+        const { income, spending, goal, flexibility, motivation } = answers;
 
-    const handleChangeExpenses = (e) => {
-        const { name, value } = e.target;
-        setFixedExpenses(prev => ({
-            ...prev,
-            [name]: parseFloat(value) || 0
-        }));
-    }
-
-    const totalFixedExpenses = Object.values(fixedExpenses).reduce((sum, val) => sum + val, 0);
-
-    //variable expenses
-    const [variableExpenses, setVariableExpenses] = useState({
-        groceries: 0,
-        gasTransport: 0,
-        diningOut: 0,
-        entertainment: 0,
-        shopping: 0
-    });
-
-    const handleChangeVariableExpenses = (e) => {
-        const { name, value } = e.target;
-        setVariableExpenses(prev => ({
-            ...prev,
-            [name]: parseFloat(value) || 0
-        }));
-    }
-
-    const totalVariableExpenses = Object.values(variableExpenses).reduce((sum, val) => sum + val, 0);
-
-    //savings and investments
-    const [savingsInvestments, setSavingsInvestments] = useState({
-        emergencyFund: 0,
-        retirement: 0,
-        investments: 0,
-        generalSavings: 0
-    });
-
-    const handleChangeSavingsInvestments = (e) => {
-        const { name, value } = e.target;
-        setSavingsInvestments(prev => ({
-            ...prev,
-            [name]: parseFloat(value) || 0
-        }));
-    }
-
-    const totalSavingsInvestments = Object.values(savingsInvestments).reduce((sum, val) => sum + val, 0);
+        if (spending === "track_every_dollar" || motivation === "accountability") {
+            setResult("Recommended: Zero-Based Budgeting");
+        } else if (spending === "simple_balance" || goal === "build_savings") {
+            setResult("Recommended: 50/30/20 Rule");
+        } else if (motivation === "visual_control") {
+            setResult("Recommended: Envelope System");
+        } else if (goal === "saving_retirement") {
+            setResult("Recommended: Pay Yourself First");
+        } else if (income === "varied") {
+            setResult("Recommended: Rolling Budget");
+        } else if (goal === "long_term") {
+            setResult("Recommended: Strategic Budgeting");
+        } else {
+            setResult("Recommended: Priority-Based Budgeting");
+        }
+    };
 
     return (
-        <div>
-            <section className="intro">
-                <h2>Zero based budgeting tool</h2>
-            </section>
-            <div className="form-container">
-                <section className="income">
-                    <h3>Income</h3>
-                    <form>
-                        <label for="salary">Rent/Mortgage:</label><br />
-                        <input type="number" id="salary" name="salary" onChange={handleChangeIncome}></input><br />
-                        <label for="sideIncome">Side Income:</label><br />
-                        <input type="number" id="sideIncome" name="sideIncome" onChange={handleChangeIncome}></input><br />
-                        <label for="benefits">Benefits:</label><br />
-                        <input type="number" id="benefits" name="benefits" onChange={handleChangeIncome}></input><br />
-                        <label for="scholarshipsGrants">Scholarships/Grants:</label><br />
-                        <input type="number" id="scholarshipsGrants" name="scholarshipsGrants" onChange={handleChangeIncome}></input><br />
-                        <label for="other">Loan Payments:</label><br />
-                        <input type="number" id="other" name="other" onChange={handleChangeIncome}></input><br />
-                    </form>
-                    <div>
-                        <p>Total Income: $<span id="totalIncome">{totalIncome.toFixed(2)}</span></p>
-                    </div>
-                </section>
+        <div className = "budgetingTool">
+            <h1 >📝 Budgeting Style Survey</h1>
+            <form onSubmit={handleSubmit} >
 
-                <section className="fixed-expenses">
-                    <h3>Fixed Expenses</h3>
-                    <form>
-                        <label for="rentMortage">Rent/Mortgage:</label><br />
-                        <input type="number" id="rentMortage" name="rentMortage" onChange={handleChangeExpenses}></input><br />
-                        <label for="utilities">Utilities:</label><br />
-                        <input type="number" id="utilities" name="utilities" onChange={handleChangeExpenses}></input><br />
-                        <label for="internetPhone">Internet/phone:</label><br />
-                        <input type="number" id="internetPhone" name="internetPhone" onChange={handleChangeExpenses}></input><br />
-                        <label for="insurance">Insurance:</label><br />
-                        <input type="number" id="insurance" name="insurance" onChange={handleChangeExpenses}></input><br />
-                        <label for="loanPayments">Loan Payments:</label><br />
-                        <input type="number" id="loanPayments" name="loanPayments" onChange={handleChangeExpenses}></input><br />
-                        <label for="subscriptions">Subscriptions:</label><br />
-                        <input type="number" id="subscriptions" name="subscriptions" onChange={handleChangeExpenses}></input><br />
-                    </form>
-                    <div>
-                        <p>Fixed Expenses: $<span id="totalFixedExpenses">{totalFixedExpenses.toFixed(2)}</span></p>
-                    </div>
-                </section>
+                {/* Question 1 */}
+                <div>
+                    <label >1. What best describes your income?</label>
+                    <select name="income" value={answers.income} onChange={handleChange} required>
+                        <option value="">-- Select --</option>
+                        <option value="fixed">Fixed paycheck every month</option>
+                        <option value="varied">Varies month to month</option>
+                        <option value="multiple">Multiple income sources</option>
+                    </select>
+                </div>
 
-                <section className="variable-expenses">
-                    <h3>Variable Expenses</h3>
-                    <form>
-                        <label for="groceries">Groceries:</label><br />
-                        <input type="number" id="groceries" name="groceries" onChange={handleChangeVariableExpenses}></input><br />
-                        <label for="gasTransport">Gas/Transport:</label><br />
-                        <input type="number" id="gasTransport" name="gasTransport" onChange={handleChangeVariableExpenses}></input><br />
-                        <label for="diningOut">Dining Out:</label><br />
-                        <input type="number" id="diningOut" name="diningOut" onChange={handleChangeVariableExpenses}></input><br />
-                        <label for="entertainment">Entertainment:</label><br />
-                        <input type="number" id="entertainment" name="entertainment" onChange={handleChangeVariableExpenses}></input><br />
-                        <label for="shopping">Shopping:</label><br />
-                        <input type="number" id="shopping" name="shopping" onChange={handleChangeVariableExpenses}></input><br />
-                    </form>
-                    <div>
-                        <p>Variable Expenses: $<span id="totalVariableExpenses">{totalVariableExpenses.toFixed(2)}</span></p>
-                    </div>
-                </section>
+                {/* Question 2 */}
+                <div>
+                    <label >2. How do you usually track or manage your spending?</label>
+                    <select name="spending" value={answers.spending} onChange={handleChange} required>
+                        <option value="">-- Select --</option>
+                        <option value="track_every_dollar">I track every dollar</option>
+                        <option value="simple_balance">Balance essentials, wants, savings</option>
+                        <option value="save_whats_left">Save what’s left</option>
+                        <option value="fixed_limits">Set fixed category limits</option>
+                    </select>
+                </div>
 
-                <section className="savings-investments">
-                    <h3>Savings & Investments</h3>
-                    <form>
-                        <label for="emergencyFund">Emergency Fund:</label><br />
-                        <input type="number" id="emergencyFund" name="emergencyFund" onChange={handleChangeSavingsInvestments}></input><br />
-                        <label for="retirement">Retirement Savings:</label><br />
-                        <input type="number" id="retirement" name="retirement" onChange={handleChangeSavingsInvestments}></input><br />
-                        <label for="investments">Investments:</label><br />
-                        <input type="number" id="investments" name="investments" onChange={handleChangeSavingsInvestments}></input><br />
-                        <label for="generalSavings">General Savings:</label><br />
-                        <input type="number" id="generalSavings" name="generalSavings" onChange={handleChangeSavingsInvestments}></input><br />
-                    </form>
-                    <div>
-                        <p>Savings & Investments: $<span id="totalSavingsInvestments">{totalSavingsInvestments.toFixed(2)}</span></p>
-                    </div>
-                </section>
+                {/* Question 3 */}
+                <div>
+                    <label >3. What is your primary financial goal right now?</label>
+                    <select name="goal" value={answers.goal} onChange={handleChange} required>
+                        <option value="">-- Select --</option>
+                        <option value="debt">Pay off debt</option>
+                        <option value="build_savings">Build savings</option>
+                        <option value="consistency">Stick to a budget</option>
+                        <option value="long_term">Plan for long-term expenses</option>
+                        <option value="saving_retirement">Save for retirement</option>
+                    </select>
+                </div>
 
-            </div>
-            <section className="intro">
-                <h3>Budget Difference</h3>
-                <p>Difference = Total Income - (Fixed Expenses + Varaible Expenses)</p><br />
-                <p>Difference: $<span>{(totalIncome - (totalVariableExpenses + totalFixedExpenses)).toFixed(2)}</span></p>
-            </section>
+                {/* Question 4 */}
+                <div>
+                    <label >4. Do you need a budget that adapts easily?</label>
+                    <select name="flexibility" value={answers.flexibility} onChange={handleChange} required>
+                        <option value="">-- Select --</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                {/* Question 5 */}
+                <div>
+                    <label >5. How do you stay motivated financially?</label>
+                    <select name="motivation" value={answers.motivation} onChange={handleChange} required>
+                        <option value="">-- Select --</option>
+                        <option value="accountability">Seeing every dollar accounted for</option>
+                        <option value="goal_oriented">Working toward clear priorities</option>
+                        <option value="simple">Simplicity and low-maintenance</option>
+                        <option value="automation">Automating everything</option>
+                        <option value="visual_control">Using cash/envelopes</option>
+                    </select>
+                </div>
+
+                <button type="submit">Submit</button>
+            </form>
+
+            {result && (
+                <div className="budgetingToolResult">
+                    <p>{result}</p>
+                </div>
+            )}
         </div>
     );
 }

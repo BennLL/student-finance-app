@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    apiKey: "AIzaSyAj14qsimNgLKUqqeaY2g5ApJ-Sh7fE5No",
+    authDomain: "student-finance-app-8d822.firebaseapp.com",
+    projectId: "student-finance-app-8d822",
+    storageBucket: "student-finance-app-8d822.firebasestorage.app",
+    messagingSenderId: "413163859254",
+    appId: "1:413163859254:web:9323248e9e7d6a68a25797"
 };
 
 const app = initializeApp(firebaseConfig);
