@@ -49,7 +49,7 @@ function NavBar() {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/tax-help">Tax Help</Link></li>
                     <li><Link to="/budgeting-tool">Budgeting Tool</Link></li>
-                    <li><Link to="/other">Other</Link></li>
+                    <li><Link to="/other">About Us</Link></li>
                     <li style={{ position: 'relative' }} ref={dropdownRef}>
                         <button className="profileIcon" onClick={toggleDropdown}>
                             <FontAwesomeIcon icon={faUser} />
@@ -58,9 +58,6 @@ function NavBar() {
                             <ul className="profileDropdown">
                                 {user ? (
                                     <>
-                                        <li style={{ color: 'white', padding: '5px 10px' }}>
-                                            Welcome, {user.email}
-                                        </li>
                                         <li>
                                             <Link onClick={handleLogout}>Logout</Link>
                                         </li>

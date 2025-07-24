@@ -1,0 +1,48 @@
+.aboutUsPage{
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
+    url("https://assets.entrepreneur.com/content/3x2/2000/1727449986-team-empowered-company-scale-business-0924-g1166610010.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    
+}
+
+.aboutUsPageTitle {
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    color: white;
+}
+
+.aboutUsPageContent {
+    display: flex;
+    flex-wrap: wrap;      
+    gap: 2rem;              
+    margin: 5%;
+    justify-content: center;  
+}
+
+.aboutUsPageContent > div {
+    flex: 1 1 300px;       
+    max-width: 400px;        
+    padding: 1.5rem;       
+    border-radius: 8px;      
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+}
+
+.aboutUsPageContent h1 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+}
+
+.aboutUsPageContent p {
+    line-height: 1.6;
+    margin: 0;
+}
+
