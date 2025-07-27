@@ -1,8 +1,11 @@
 import './styling/budgetingTool.css';
 import React, { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 
 function BudgetingTool() {
+    const { user } = useAuth();
     const [answers, setAnswers] = useState({
         income: '',
         spending: '',
@@ -40,7 +43,7 @@ function BudgetingTool() {
     };
 
     return (
-        <div className = "budgetingTool">
+        <div className="budgetingTool">
             <h1 >📝 Budgeting Style Survey</h1>
             <form onSubmit={handleSubmit} >
 
@@ -109,6 +112,11 @@ function BudgetingTool() {
             {result && (
                 <div className="budgetingToolResult">
                     <p>{result}</p>
+                    <div>
+                        {user ? <div>Place holder for more features</div> : <button>
+                            <Link to="/login">Log in to get started!</Link>
+                        </button>}
+                    </div>
                 </div>
             )}
         </div>

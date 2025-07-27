@@ -2,6 +2,7 @@ import './styling/homepage.css'
 import { useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import HomePageLoggedIn from './homePageLoggedIn';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
     const { user } = useAuth();
@@ -17,7 +18,7 @@ function HomePage() {
                                 A modern finance education tool built for young adults and students. Our mission is to teach you how to manage money <strong>before</strong> you’re expected to.
                             </p>
                             <button>
-                                Get started
+                                <Link to="/login">Get started</Link>
                             </button>
                         </div>
                     </div>

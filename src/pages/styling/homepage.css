@@ -58,7 +58,9 @@
 /* home page features */
 
 .homePageFeatures {
-  background-image: url("https://c1.wallpaperflare.com/preview/898/284/844/stock-trading-monitor-desk.jpg");
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
+    url("https://c1.wallpaperflare.com/preview/898/284/844/stock-trading-monitor-desk.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -113,7 +115,7 @@
 
 /* home page tool */
 .homePageTools {
-  background-image: url("/public/img/img2.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/public/img/img2.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -153,7 +155,7 @@
 
 /* home page premium */
 .homePagePremium {
-  background-image: url("/public/img/img3.png");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/public/img/img3.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -222,4 +224,35 @@
 
 .profileDropdown li a:hover {
   text-decoration: underline;
+}
+
+/* dashboard cards  */
+
+.dashboardCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.dashboardCard {
+  background-color: orange;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 200px;
+  max-width: 250px;
+}
+
+.dashboardCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+  background-color: rgb(189, 127, 12);
 }
