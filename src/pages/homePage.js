@@ -1,4 +1,4 @@
-import './styling/homepage.css'
+import styles from './homePage.module.css'
 import { useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import HomePageLoggedIn from './homePageLoggedIn';
@@ -8,10 +8,10 @@ function HomePage() {
     const { user } = useAuth();
 
     return (
-        <div className="homeContainer">
+        <div className={`${styles.homeContainer} tuck-under-navbar`}>
             {user ? <HomePageLoggedIn /> :
                 <div>
-                    <div className="homePageIntro">
+                    <div className={styles.homePageIntro}>
                         <div>
                             <h2>Welcome to Student Finance Help</h2>
                             <p>
@@ -23,10 +23,10 @@ function HomePage() {
                         </div>
                     </div>
 
-                    <div className="homePageFeatures">
-                        <div className='homePageFeaturesText'>
+                    <div className={styles.homePageFeatures}>
+                        <div className={styles.homePageFeaturesText}>
                             <h3>What you’ll learn</h3>
-                            <ul className="feature-list">
+                            <ul className={styles.featureList}>
                                 <li>📄 How to file taxes for free</li>
                                 <li>📊 Smart budgeting strategies</li>
                                 <li>🏦 Financial responsibilities like retirement, savings, and more</li>
@@ -34,7 +34,7 @@ function HomePage() {
                         </div>
                     </div>
 
-                    <div className="homePageTools">
+                    <div className={styles.homePageTools}>
                         <div>
                             <h3>Interactive Tools</h3>
                             <p>
@@ -43,7 +43,7 @@ function HomePage() {
                         </div>
                     </div>
 
-                    <div className="homePagePremium">
+                    <div className={styles.homePagePremium}>
                         <div>
                             <h3>Premium Features</h3>
                             <p>

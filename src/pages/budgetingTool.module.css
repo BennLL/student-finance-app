@@ -1,0 +1,19 @@
+.budgetingTool label {
+    display: block;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.budgetingTool select {
+    display: block;
+    width: 100%;
+}
+
+.budgetingTool button {
+    display: block;
+    margin-top: 1rem;
+}
+
+.budgetingToolResult {
+    margin-top: 2rem;
+}

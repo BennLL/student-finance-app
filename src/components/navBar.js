@@ -1,4 +1,4 @@
-import './navBar.css';
+import styles from './navBar.module.css';
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -40,9 +40,9 @@ function NavBar() {
     }, [showDropdown]);
 
     return (
-        <div className="navbar">
+        <div className={styles.navbar}>
             <div>
-                <h1 className='navbarTitle'>Student Finance Help</h1>
+                <h1 className={styles.navbarTitle}>Student Finance Help</h1>
             </div>
             <div>
                 <ul>
@@ -51,11 +51,11 @@ function NavBar() {
                     <li><Link to="/budgeting-tool">Budgeting Tool</Link></li>
                     <li><Link to="/other">About Us</Link></li>
                     <li style={{ position: 'relative' }} ref={dropdownRef}>
-                        <button className="profileIcon" onClick={toggleDropdown}>
+                        <button className={styles.profileIcon} onClick={toggleDropdown}>
                             <FontAwesomeIcon icon={faUser} />
                         </button>
                         {showDropdown && (
-                            <ul className="profileDropdown">
+                            <ul className={styles.profileDropdown}>
                                 {user ? (
                                     <>
                                         <li>

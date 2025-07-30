@@ -1,18 +1,24 @@
 .navbar {
     padding-left: 1%;
     padding-right: 1%;
-    background-color: black;
+    background-color: var(--color-black-glass-bg);
     padding: 1rem;
+    height: calc(var(--navbar-height) - 2rem - 1px);
+    /* 2rem padding, 1px border */
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--color-glass-border);
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .navbarTitle {
-    color: white;
+    color: var(--color-white);
     font-size: 20px;
 }
 
@@ -25,17 +31,17 @@
 }
 
 .navbar li {
-    color: white;
+    color: var(--color-white);
     font-weight: bold;
     cursor: pointer;
     transition: color 0.3s ease;
 }
 
 .navbar li:hover {
-    color: orange;
+    color: var(--color-accent-primary);
 }
 
-.navbar a{
-    all:unset;
+.navbar a {
+    all: unset;
     cursor: pointer;
 }

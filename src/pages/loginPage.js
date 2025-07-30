@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithP
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./styling/authPages.css";
+import styles from "./authPages.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
@@ -55,10 +55,10 @@ function LoginPage() {
     }
 
     return (
-        <div className="authPage">
+        <div className={styles.authPage}>
             {isSignIn ?
                 <div>
-                    <div className="authSpacer">
+                    <div className={styles.authSpacer}>
                         <h1>Welcome Back!</h1>
                         <p>Let’s check in on your goals and keep your budget on track. Every step counts — you’re doing great!.</p>
                         <div>
@@ -67,7 +67,7 @@ function LoginPage() {
                             <FontAwesomeIcon icon={faYoutube} />
                         </div>
                     </div>
-                    <div className="authForm">
+                    <div className={styles.authForm}>
                         <h2>Login</h2>
                         <form onSubmit={handleSubmit}>
                             <div>
@@ -91,11 +91,11 @@ function LoginPage() {
                                 />
                             </div>
                             {/*debug  */}
-                            {error && <p>{error}</p>} 
+                            {error && <p>{error}</p>}
                             <button type="submit">Login</button>
 
                         </form>
-                        <div className='authOptions'>
+                        <div className={styles.authOptions}>
                             <p>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ OR ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
                             <button onClick={handleGoogleSignIn}>
                                 <FontAwesomeIcon icon={faGoogle} />
@@ -107,7 +107,7 @@ function LoginPage() {
                         </div>
                     </div>
                 </div> : <div>
-                    <div className="authSpacer">
+                    <div className={styles.authSpacer}>
                         <h1>Welcome aboard!</h1>
                         <p>You’re all set to take control of your finances. Let’s start building your path to smarter spending and saving!</p>
                         <div>
@@ -116,7 +116,7 @@ function LoginPage() {
                             <FontAwesomeIcon icon={faYoutube} />
                         </div>
                     </div>
-                    <div className="authForm">
+                    <div className={styles.authForm}>
                         <h2>Sign Up</h2>
                         <form>
                             <div>
@@ -149,7 +149,7 @@ function LoginPage() {
                             {error && <p>{error}</p>}
                             <button type="submit" onClick={onSubmit}>Sign up</button>
                         </form>
-                        <div className='authOptions'>
+                        <div className={styles.authOptions}>
                             <p>⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯ OR ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯</p>
                             <button onClick={handleGoogleSignIn}>
                                 <FontAwesomeIcon icon={faGoogle} />
