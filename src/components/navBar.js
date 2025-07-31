@@ -42,7 +42,7 @@ function NavBar() {
     return (
         <div className={styles.navbar}>
             <div>
-                <h1 className={styles.navbarTitle}>Student Finance Help</h1>
+                <h1 className={styles.navbarTitle}>Aurelio: Budget & Financial Literacy</h1>
             </div>
             <div>
                 <ul>

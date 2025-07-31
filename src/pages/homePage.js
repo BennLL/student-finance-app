@@ -1,4 +1,4 @@
-import styles from './homePage.module.css'
+import styles from './styling/homePage.module.css'
 import { useContext } from 'react';
 import { useAuth } from '../context/AuthContext';
 import HomePageLoggedIn from './homePageLoggedIn';

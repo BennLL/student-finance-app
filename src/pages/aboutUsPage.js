@@ -1,4 +1,4 @@
-import styles from './aboutUsPage.module.css';
+import styles from './styling/aboutUsPage.module.css';
 
 function AboutUsPage() {
     return (

@@ -1,7 +1,10 @@
-import styles from './budgetingTool.module.css';
+import styles from './styling/budgetingTool.module.css';
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
+import { saveAs } from 'file-saver';
 
 
 function BudgetingTool() {
@@ -20,7 +23,7 @@ function BudgetingTool() {
         setAnswers({ ...answers, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const { income, spending, goal, flexibility, motivation } = answers;
@@ -40,7 +43,28 @@ function BudgetingTool() {
         } else {
             setResult("Recommended: Priority-Based Budgeting");
         }
+
+        if (user) {
+            try {
+                await addDoc(collection(db, "budgetSurveyResponses"), {
+                    ...answers,
+                    user: user?.email || "Anonymous",
+                    timestamp: serverTimestamp(),
+                });
+
+            } catch (e) {
+                console.error("Error saving survey response: ", e);
+            }
+        }
     };
+
+    const handleDownload = async () => {
+        const snapshot = await getDocs(collection(db, "budgetSurveyResponses"));
+        const data = snapshot.docs.map(doc => doc.data());
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        saveAs(blob, "surveyResponses.json");
+    };
+
 
     return (
         <div className="centered-container">
@@ -114,7 +138,11 @@ function BudgetingTool() {
                     <div className={`${styles.budgetingToolResult} rounded shadowed glass`}>
                         <p className="text-center"><b>{result}</b></p>
                         <div>
-                            {user ? <div>Place holder for more features</div> : <Link to="/login">
+                            {user ? <div>
+                                <button className="secondary-button rounded horizontal-center" onClick={handleDownload}>
+                                    📁 Download All Responses
+                                </button>
+                            </div> : <Link to="/login">
                                 <button className="primary-button rounded horizontal-center">
                                     Log in to get started!
                                 </button>

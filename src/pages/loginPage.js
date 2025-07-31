@@ -3,7 +3,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithP
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import styles from "./authPages.module.css";
+import styles from "./styling/authPages.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faInstagram, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
