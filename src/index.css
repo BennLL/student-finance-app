@@ -17,10 +17,11 @@
 
 body {
     margin: 0;
-    background-color: #0e0e0e;
+    background-color: rgb(249, 245, 236);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: var(--color-white);
+    color: var(--color-black);
+
 }
 
 select {
@@ -50,6 +51,7 @@ h1 {
 
 .text-center {
     text-align: center;
+    color:black;
 }
 
 .horizontal-center {

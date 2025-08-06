@@ -42,7 +42,7 @@ function NavBar() {
     return (
         <div className={styles.navbar}>
             <div>
-                <h1 className={styles.navbarTitle}>Aurelio: Budget & Financial Literacy</h1>
+                <img className = {styles.logo} src= "/img/logo3.png"></img>
             </div>
             <div>
                 <ul>

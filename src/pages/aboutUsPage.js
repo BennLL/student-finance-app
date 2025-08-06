@@ -2,7 +2,7 @@ import styles from './styling/aboutUsPage.module.css';
 
 function AboutUsPage() {
     return (
-        <div className={`${styles.aboutUsPage} tuck-under-navbar`}>
+        <div className={styles.aboutUsPage} >
             <div className="vertical-center horizontal-center text-center">
                 <h1>About Us</h1>
                 <p>For Students Anywhere</p>

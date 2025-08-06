@@ -1,5 +1,5 @@
 import { Model } from "survey-core";
-import { ContrastDark } from "survey-core/themes";
+import { DefaultLightPanelless} from "survey-core/themes";
 
 export const surveyJSON = {
   title: "📊 Student Budgeting Survey",
@@ -52,6 +52,6 @@ export const surveyJSON = {
 };
 
 const survey = new Model(surveyJSON);
-survey.applyTheme(ContrastDark);
+survey.applyTheme(DefaultLightPanelless);
 
 export default survey;

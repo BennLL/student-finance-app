@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Survey } from 'survey-react-ui';
 import { Model } from 'survey-core';
 import 'survey-core/survey-core.css';
-import { ContrastLight } from "survey-core/themes"; 
+import { DefaultLightPanelless } from "survey-core/themes";
 import styles from './styling/budgetingTool.module.css';
 
 import { surveyJSON } from '../components/budgetSurveyJSON.js';
@@ -13,11 +13,15 @@ import { db } from '../firebase';
 import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { saveAs } from 'file-saver';
 
+import { getBudgetRecommendation } from '../utils/openaiClient.js';
+
 function BudgetingTool() {
   const { user } = useAuth();
   const [submitted, setSubmitted] = React.useState(false);
+  const [recommendation, setRecommendation] = React.useState("");
 
   const model = new Model(surveyJSON);
+  model.applyTheme(DefaultLightPanelless);
 
   model.onComplete.add(async (sender) => {
     const data = sender.data;
@@ -34,6 +38,9 @@ function BudgetingTool() {
       }
     }
 
+    const gptResponse = await getBudgetRecommendation(data);
+    setRecommendation(gptResponse);
+
     setSubmitted(true);
   });
 
@@ -46,18 +53,28 @@ function BudgetingTool() {
 
   return (
     <div className="centered-container">
-      <div className={`${styles.budgetingTool} rounded shadowed glass`}>
+      <div>
         <h1 className="text-center">🧾 Budgeting Profile Intake</h1>
 
         {!submitted ? (
           <Survey model={model} />
         ) : (
-          <div className={`${styles.budgetingToolResult} rounded shadowed glass`}>
+          <div className={styles.budgetingToolResult}>
             <p className="text-center"><b>✅ Survey submitted!</b></p>
             {user ? (
-              <button className="secondary-button rounded horizontal-center" onClick={handleDownload}>
-                📁 Download All Responses
-              </button>
+              <div>
+                {recommendation && (
+                  <div className="text-center">
+                    <h3>🧠 GPT Recommendation</h3>
+                    <p>{recommendation}</p>
+                  </div>
+                )}
+                <button className="secondary-button rounded horizontal-center" onClick={handleDownload}>
+                  📁 Download All Responses
+                </button>
+
+              </div>
+
             ) : (
               <Link to="/login">
                 <button className="primary-button rounded horizontal-center">

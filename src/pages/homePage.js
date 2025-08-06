@@ -8,7 +8,7 @@ function HomePage() {
     const { user } = useAuth();
 
     return (
-        <div className={`${styles.homeContainer} tuck-under-navbar`}>
+        <div className={styles.homeContainer}>
             {user ? <HomePageLoggedIn /> :
                 <div>
                     <div className={styles.homePageIntro}>
