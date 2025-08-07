@@ -1,55 +1,70 @@
 import { Model } from "survey-core";
-import { DefaultLightPanelless} from "survey-core/themes";
+import { DefaultLightPanelless } from "survey-core/themes";
 
 export const surveyJSON = {
-  title: "📊 Student Budgeting Survey",
+  title: "📊 Personalized Budgeting Survey",
   showProgressBar: "top",
   pages: [
     {
       name: "basic",
       elements: [
         { type: "text", name: "name", title: "Name:", isRequired: true },
-        { type: "text", name: "age", inputType: "number", title: "Age:", isRequired: true },
-        { type: "text", name: "school", title: "School:", isRequired: true },
-        { type: "text", name: "year", title: "Year in School:", isRequired: true },
-        { type: "text", name: "major", title: "Major:", isRequired: true },
+        {
+          type: "dropdown", name: "age", title: "Age Range:", isRequired: true,
+          choices: ["Under 18", "18-22", "23-29", "30-39", "40+"]
+        },
+        {
+          type: "radiogroup", name: "student_status", title: "Are you currently a student?", isRequired: true,
+          choices: ["Yes", "No"]
+        },
+        {
+          type: "dropdown", name: "employment_status", title: "What is your current employment status?", isRequired: true,
+          choices: ["Unemployed", "Part-time", "Full-time", "Freelancer", "Other"]
+        }
       ]
     },
     {
       name: "financial",
       elements: [
-        { type: "text", name: "income", title: "1. What's your current monthly income?", isRequired: true },
-        { type: "text", name: "housing", title: "2. Do you live on-campus, off-campus, or at home?", isRequired: true },
-        { type: "text", name: "housingCovered", title: "3. Do you pay for rent or housing expenses?", isRequired: true },
-        { type: "text", name: "expenses", title: "4. What are your typical monthly expenses?", isRequired: true },
-        { type: "text", name: "subscriptions", title: "5. Do you have any recurring bills or subscriptions?", isRequired: true },
-        { type: "text", name: "savingsGoal", title: "6. Do you have a savings goal?", isRequired: true },
-        { type: "text", name: "debt", title: "7. Do you have any debt or loans?", isRequired: true },
-        { type: "text", name: "irregularPurchases", title: "8. How often do you make irregular purchases?", isRequired: true },
         {
-          type: "dropdown", name: "comfort", title: "9. How comfortable are you with budgeting?",
-          isRequired: true,
-          choices: ["Beginner", "Intermediate", "Advanced"]
+          type: "dropdown", name: "budgeting_style", title: "Which budgeting style best describes you?", isRequired: true,
+          choices: ["Envelope method", "Zero-based", "50/30/20", "I don't use a specific method"]
         },
         {
-          type: "radiogroup", name: "autoCategorization",
-          title: "10. Would you like automatic categorization of your expenses?",
-          choices: ["Yes", "No"], isRequired: true
+          type: "radiogroup", name: "income_consistency", title: "How consistent is your monthly income?", isRequired: true,
+          choices: ["Very consistent", "Somewhat consistent", "Varies a lot"]
         },
         {
-          type: "radiogroup", name: "alerts",
-          title: "11. Do you want notifications for low balances or large transactions?",
-          choices: ["Yes", "No"], isRequired: true
+          type: "dropdown", name: "income_frequency", title: "How often do you receive income?", isRequired: true,
+          choices: ["Weekly", "Bi-weekly", "Monthly", "Irregularly"]
         },
         {
-          type: "radiogroup", name: "studentDiscounts",
-          title: "12. Would you like suggestions for student discounts or cost-saving tips?",
-          choices: ["Absolutely", "No thanks"], isRequired: true
-        }
+          type: "radiogroup", name: "shared_expenses", title: "Do you share expenses with others (e.g., roommates, partner)?", isRequired: true,
+          choices: ["Yes", "No"]
+        },
+        {
+          type: "checkbox", name: "financial_goals", title: "What financial goals are most important to you?", isRequired: true,
+          choices: ["Emergency fund", "Paying off debt", "Saving for a big purchase", "Building credit", "Investing", "Other"]
+        },
+        {
+          type: "dropdown", name: "goal_urgency", title: "How urgent are your financial goals?", isRequired: true,
+          choices: ["Very urgent", "Somewhat urgent", "Not urgent"]
+        },
+        {
+          type: "checkbox", name: "overspending", title: "What categories do you tend to overspend in?", isRequired: true,
+          choices: ["Food delivery", "Clothing", "Entertainment", "Subscriptions", "Other"]
+        },
+        {
+          type: "dropdown", name: "tracking_method", title: "How do you currently track your spending?", isRequired: true,
+          choices: ["Spreadsheet", "Budgeting app", "Bank app", "Pen & paper", "I don’t track it"]
+        },
+        { type: "comment", name: "recurring_expenses", title: "List any large recurring expenses you have (tuition, rent, etc.):", isRequired: true },
+        { type: "comment", name: "additional_notes", title: "Any additional notes or context you want to share?" }
       ]
     }
   ]
 };
+
 
 const survey = new Model(surveyJSON);
 survey.applyTheme(DefaultLightPanelless);

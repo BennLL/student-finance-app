@@ -1,4 +1,3 @@
-// src/pages/BudgetingTool.js
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
@@ -18,7 +17,7 @@ import { getBudgetRecommendation } from '../utils/openaiClient.js';
 function BudgetingTool() {
   const { user } = useAuth();
   const [submitted, setSubmitted] = React.useState(false);
-  const [recommendation, setRecommendation] = React.useState("");
+  const [recommendation, setRecommendation] = React.useState(null);
 
   const model = new Model(surveyJSON);
   model.applyTheme(DefaultLightPanelless);
@@ -38,8 +37,14 @@ function BudgetingTool() {
       }
     }
 
-    const gptResponse = await getBudgetRecommendation(data);
-    setRecommendation(gptResponse);
+    try {
+      const gptResponse = await getBudgetRecommendation(data);
+      console.log("GPT Recommendation:", gptResponse);
+      setRecommendation(gptResponse);
+    } catch (err) {
+      console.error("Error getting recommendation:", err);
+      setRecommendation({ narrative: "Sorry, we couldn't generate a recommendation at this time." });
+    }
 
     setSubmitted(true);
   });
@@ -61,20 +66,44 @@ function BudgetingTool() {
         ) : (
           <div className={styles.budgetingToolResult}>
             <p className="text-center"><b>✅ Survey submitted!</b></p>
+
             {user ? (
               <div>
                 {recommendation && (
-                  <div className="text-center">
+                  <div className="text-left max-w-xl mx-auto mt-6">
                     <h3>🧠 GPT Recommendation</h3>
-                    <p>{recommendation}</p>
+
+                    {recommendation.narrative && (
+                      <p><strong>Summary:</strong> {recommendation.narrative}</p>
+                    )}
+
+                    {recommendation.recommendation && (
+                      <p><strong>Suggested Method:</strong> {recommendation.recommendation}</p>
+                    )}
+
+                    {Array.isArray(recommendation.categories) && (
+                      <>
+                        <h4>Recommended Categories:</h4>
+                        <ul>
+                          {recommendation.categories.map((cat, index) => (
+                            <li key={index}>
+                              <strong>{cat.name} ({cat.target})</strong>: {cat.description}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    )}
+
+                    {recommendation.visual_guide && (
+                      <p><em>{recommendation.visual_guide}</em></p>
+                    )}
                   </div>
                 )}
+
                 <button className="secondary-button rounded horizontal-center" onClick={handleDownload}>
                   📁 Download All Responses
                 </button>
-
               </div>
-
             ) : (
               <Link to="/login">
                 <button className="primary-button rounded horizontal-center">
