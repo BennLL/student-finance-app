@@ -13,6 +13,7 @@ import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore
 import { saveAs } from 'file-saver';
 
 import { getBudgetRecommendation } from '../utils/openaiClient.js';
+import BudgetDonutChart from '../components/budgetDonutChart.js';
 
 function BudgetingTool() {
   const { user } = useAuth();
@@ -84,6 +85,7 @@ function BudgetingTool() {
                     {Array.isArray(recommendation.categories) && (
                       <>
                         <h4>Recommended Categories:</h4>
+                        <BudgetDonutChart categories={recommendation.categories} />
                         <ul>
                           {recommendation.categories.map((cat, index) => (
                             <li key={index}>
