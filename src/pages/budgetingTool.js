@@ -28,23 +28,27 @@ function BudgetingTool() {
 
     if (user) {
       try {
+        const gptResponse = await getBudgetRecommendation(data);
+        console.log("GPT Recommendation:", gptResponse);
+        setRecommendation(gptResponse);
+
         await addDoc(collection(db, 'budgetSurveyResponses'), {
-          ...data,
+          survey: data,
+          recommendation: gptResponse,
           user: user?.email || 'Anonymous',
           timestamp: serverTimestamp()
         });
       } catch (e) {
-        console.error('Error saving survey response: ', e);
+        console.error('Error saving survey response & recommendation: ', e);
       }
-    }
-
-    try {
-      const gptResponse = await getBudgetRecommendation(data);
-      console.log("GPT Recommendation:", gptResponse);
-      setRecommendation(gptResponse);
-    } catch (err) {
-      console.error("Error getting recommendation:", err);
-      setRecommendation({ narrative: "Sorry, we couldn't generate a recommendation at this time." });
+    } else {
+      try {
+        const gptResponse = await getBudgetRecommendation(data);
+        setRecommendation(gptResponse);
+      } catch (err) {
+        console.error("Error getting recommendation:", err);
+        setRecommendation({ narrative: "Sorry, we couldn't generate a recommendation at this time." });
+      }
     }
 
     setSubmitted(true);
