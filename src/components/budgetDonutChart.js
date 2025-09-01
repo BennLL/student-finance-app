@@ -36,7 +36,7 @@ export default function BudgetDonutChart({ categories }) {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '20px auto' }}>
+    <div className='h-120 w-auto'>
       <Doughnut data={chartData} />
     </div>
   );

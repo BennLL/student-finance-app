@@ -1,19 +1,15 @@
 .homeContainer {
   display: grid;
   grid-template-rows: auto 1fr;
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: rgb(249, 245, 236);
   /* padding-left: 10%;
   padding-right: 10%; */
 }
 
 /* home page intro */
 .homePageIntro {
-  /* background-image: url("https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExemxyM2tvbW94YzUwZjc1ZTZoMWFoNmV3a25qbmxrNm51d3AyaXM0bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/78nXADhnE4BQfG4gup/giphy.gif"); */
-  background-image: url("https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXlydDMwb2FzNXBwajlvNGFqc2Rnb2lmNHBkb290a3phbmJtejFnaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/T56ypZF2ggnYZIwoS5/giphy.gif");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-color: rgb(249, 245, 236);
   height: 90vh;
   width: 100%;
   display: flex;
@@ -57,12 +53,7 @@
 /* home page features */
 
 .homePageFeatures {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),
-    url("https://c1.wallpaperflare.com/preview/898/284/844/stock-trading-monitor-desk.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
   height: 70vh;
   width: 100%;
   display: flex;
@@ -114,10 +105,7 @@
 
 /* home page tool */
 .homePageTools {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/public/img/img2.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
   height: 70vh;
   width: 100%;
   display: flex;
@@ -154,10 +142,7 @@
 
 /* home page premium */
 .homePagePremium {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url("/public/img/img3.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
   height: 70vh;
   width: 100%;
   display: flex;
